@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Students;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 
 class StudentsController extends Controller
@@ -10,15 +11,29 @@ class StudentsController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
 
-        $students = Students::all(); // Or paginate if needed
-        return view('students.index', compact('students'));
-
-
+        $search = $request->input('search');
+    
+      
+        $query = Students::query();
+    
+     
+        if ($search) {
+            $query->where('name', 'like', "%{$search}%");
+                
+        }
+    
+       
+        $students = $query->paginate(5);
+    
+     
+        $students->appends(['search' => $search]);
+    
+        return view('students.index', compact('students', 'search'));
     }
-
+    
     /**
      * Show the form for creating a new resource.
      */
@@ -50,7 +65,7 @@ class StudentsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Students $students)
+    public function show(Students $student)
     {
         return view('students.index');
     }
@@ -92,5 +107,14 @@ class StudentsController extends Controller
     
 
         return redirect()->route('students.index')->with('success', 'Student deleted successfully!');
+    }
+
+    public function export()
+    {
+        $students = Students::all(); 
+
+        $pdf = Pdf::loadView('students.pdf', compact('students'));
+    
+        return $pdf->download('students_report.pdf');
     }
 }

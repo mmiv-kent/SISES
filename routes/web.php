@@ -26,7 +26,11 @@ require __DIR__.'/auth.php';
 
 Route::get('/students', [StudentsController::class, 'index'])->name('students.index');
 Route::get('students/create', [StudentsController::class, 'create'])->name('students.create');
-Route::resource('students', StudentsController::class);
 Route::get('/students/{student}/edit', [StudentsController::class, 'edit'])->name('students.edit');
+Route::post('/students', [StudentsController::class, 'store'])->name('students.store');
 Route::put('/students/{student}', [StudentsController::class, 'update'])->name('students.update');
 Route::delete('/students/{student}', [StudentsController::class, 'destroy'])->name('students.destroy');
+
+/* pdf */
+
+Route::get('/students/export', [StudentsController::class, 'export'])->name('students.export');
