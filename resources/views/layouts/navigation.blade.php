@@ -38,9 +38,11 @@
                                 </svg>
                             </div>
 
-                            <div>
-                                <img src="/sises/SISES-home.png" alt="" class="rounded-full h-6 w-6 object-cover" >
-                            </div>
+                            <img
+                                src="{{ auth()->user()->avatar ? asset('storage/' . auth()->user()->avatar) : asset('images/default-avatar.jpg') }}"
+                                alt="User Avatar"
+                                class="rounded-full h-6 w-6 object-cover"
+                            />
 
                         </button>
                     </x-slot>
