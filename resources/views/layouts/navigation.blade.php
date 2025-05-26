@@ -21,6 +21,16 @@
                         {{ __('Students') }}
                     </x-nav-link>
                 </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('rooms.index')" :active="request()->routeIs('rooms.index')">
+                        {{ __('Rooms') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('rentals.index')" :active="request()->routeIs('rentals.index')">
+                        {{ __('Use a Room') }}
+                    </x-nav-link>
+                </div>
             </div>
 
             <!-- Settings Dropdown -->

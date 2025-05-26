@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RentController;
+use App\Http\Controllers\RoomsController;
 use App\Http\Controllers\StudentsController;
 use Illuminate\Support\Facades\Route;
 
@@ -34,3 +36,12 @@ Route::delete('/students/{student}', [StudentsController::class, 'destroy'])->na
 /* pdf */
 
 Route::get('/students/export', [StudentsController::class, 'export'])->name('students.export');
+
+//-- rooms route --//
+Route::resource('rooms', RoomsController::class)->except(['show']);
+Route::get('/rooms/export-pdf', [RoomsController::class, 'exportPdf'])->name('rooms.exportPdf');
+
+
+//--rent route --//
+Route::resource('rentals', RentController::class)->except(['show']);
+Route::get('/rentals/pdf', [RentController::class, 'generatePdf'])->name('rentals.pdf');
