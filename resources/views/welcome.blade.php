@@ -13,10 +13,14 @@
         <!-- Tailwind CSS via CDN -->
         <script src="https://cdn.tailwindcss.com"></script>
     </head>
-    <body class="min-h-screen flex items-center justify-center bg-[#312C51]">
+    <body class="min-h-screen flex flex-col items-center justify-center bg-[#312C51] px-4">
 
+        <!-- Logo -->
+        <img src="{{ asset('sises/SISES-gray.png') }}" alt="SISES Logo" class="w-64 mb-8">
+
+        <!-- Auth Buttons -->
         @if (Route::has('login'))
-            <div class="bg-[#48426d] p-8 rounded-lg shadow-lg flex gap-4">
+            <div class="bg-[#48426d] p-8 rounded-lg shadow-lg flex flex-wrap gap-4 justify-center">
                 @auth
                     <a
                         href="{{ url('/dashboard') }}"
