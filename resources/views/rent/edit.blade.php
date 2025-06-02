@@ -1,8 +1,10 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-2xl text-gray-800 leading-tight">
-            {{ __('Edit Rental') }}
-        </h2>
+        <div class="bg-[#48426d] px-4 py-6 rounded-md shadow">
+            <h2 class="font-semibold text-xl text-white leading-tight">
+                {{ __('Rental Transaction') }}
+            </h2>
+        </div>
     </x-slot>
 
     <div class="max-w-4xl mx-auto mt-6 px-4 bg-white shadow rounded-lg p-6">
